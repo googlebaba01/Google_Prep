@@ -2,6 +2,7 @@
 using namespace std;
 class Solution {
 public:
+    // use cases of DSU in the questions 
     int *rank, *parent;
     int find(int node){
         if(parent[node] == node) return node;
