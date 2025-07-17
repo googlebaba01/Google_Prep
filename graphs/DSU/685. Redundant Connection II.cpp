@@ -8,7 +8,6 @@ public:
         if(x == p[x]) return x;
         return p[x] = find(p[x]); 
     }
-
     void unite(int x, int y){
         x = find(x);
         y = find(y) ;
