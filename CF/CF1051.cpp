@@ -136,52 +136,52 @@
 //     }
 // }
 
-const int MOD = 1e9+7;
+// const int MOD = 1e9+7;
 
-int main() {
-    ios::sync_with_stdio(false);
-    cin.tie(nullptr);
+// int main() {
+//     ios::sync_with_stdio(false);
+//     cin.tie(nullptr);
 
-    int t; cin >> t;
-    while (t--) {
-        int n; cin >> n;
-        vector<int> a(n);
-        for (int i = 0; i < n; i++) cin >> a[i];
+//     int t; cin >> t;
+//     while (t--) {
+//         int n; cin >> n;
+//         vector<int> a(n);
+//         for (int i = 0; i < n; i++) cin >> a[i];
 
-        vector<vector<int>> dp(n+1, vector<int>(n+1, 0));
-        dp[0][0] = 1;
+//         vector<vector<int>> dp(n+1, vector<int>(n+1, 0));
+//         dp[0][0] = 1;
 
-        for (int v : a) {
-            vector<vector<int>> newdp = dp;
+//         for (int v : a) {
+//             vector<vector<int>> newdp = dp;
 
-            vector<int> preA(n+2,0), preB(n+2,0);
+//             vector<int> preA(n+2,0), preB(n+2,0);
 
-            for (int i = 0; i <= n; i++) {
-                for (int j = 0; j <= n; j++) {
-                    preA[i+1] = (preA[i+1] + dp[i][j]) % MOD;
-                    preB[j+1] = (preB[j+1] + dp[i][j]) % MOD;
-                }
-            }
+//             for (int i = 0; i <= n; i++) {
+//                 for (int j = 0; j <= n; j++) {
+//                     preA[i+1] = (preA[i+1] + dp[i][j]) % MOD;
+//                     preB[j+1] = (preB[j+1] + dp[i][j]) % MOD;
+//                 }
+//             }
 
-            for (int la = 0; la <= n; la++) {
-                for (int lb = 0; lb <= n; lb++) {
-                    int cur = dp[la][lb];
-                    if (!cur) continue;
+//             for (int la = 0; la <= n; la++) {
+//                 for (int lb = 0; lb <= n; lb++) {
+//                     int cur = dp[la][lb];
+//                     if (!cur) continue;
 
-                    if (v >= la) newdp[v][lb] = (newdp[v][lb] + cur) % MOD;
+//                     if (v >= la) newdp[v][lb] = (newdp[v][lb] + cur) % MOD;
                     
-                    else if (v >= lb) newdp[la][v] = (newdp[la][v] + cur) % MOD;
-                }
-            }
+//                     else if (v >= lb) newdp[la][v] = (newdp[la][v] + cur) % MOD;
+//                 }
+//             }
 
-            dp.swap(newdp);
-        }
+//             dp.swap(newdp);
+//         }
 
-        long long ans = 0;
-        for (int la = 0; la <= n; la++)
-            for (int lb = 0; lb <= n; lb++)
-                ans = (ans + dp[la][lb]) % MOD;
+//         long long ans = 0;
+//         for (int la = 0; la <= n; la++)
+//             for (int lb = 0; lb <= n; lb++)
+//                 ans = (ans + dp[la][lb]) % MOD;
 
-        cout << ans << "\n";
-    }
-}
+//         cout << ans << "\n";
+//     }
+// }
